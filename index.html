@@ -99,6 +99,24 @@
             background-color: rgba(255, 255, 255, 0.1);
         }
 
+        body {
+            --cursor-x: 50%;
+            --cursor-y: 50%;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            background: radial-gradient(circle at var(--cursor-x) var(--cursor-y), rgba(255, 255, 255, 0.2), transparent);
+            transition: background 0.1s ease;
+            z-index: 9999;
+        }
+
         /* * ГЛАВНЫЙ ЭКРАН 
          */
         #home {
@@ -401,6 +419,13 @@
                     updateCardTransform(event.clientX - rect.left, event.clientY - rect.top);
                 });
             });
+        });
+
+        document.addEventListener('mousemove', event => {
+            const x = (event.clientX / window.innerWidth) * 100;
+            const y = (event.clientY / window.innerHeight) * 100;
+            document.body.style.setProperty('--cursor-x', `${x}%`);
+            document.body.style.setProperty('--cursor-y', `${y}%`);
         });
     </script>
 
