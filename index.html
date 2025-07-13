@@ -243,8 +243,8 @@
 
     <nav class="navbar">
         <div class="logo">
-            <!-- ЗАМЕНИТЕ НА ВАШ ЛОГОТИП -->
-            <a href="#home"><img src="https://placehold.co/150x50/121212/FFFFFF?text=KOCHEVNIK" alt="Лого Кочевник"></a>
+            <!-- ИСПРАВЛЕНИЕ: Укажите правильный относительный путь к вашему логотипу -->
+            <a href="#home"><img src="images/logo.png" alt="Лого Кочевник" onerror="this.onerror=null;this.src='https://placehold.co/150x50/121212/FFFFFF?text=Logo';"></a>
         </div>
         <ul>
             <li><a href="#home">Главная</a></li>
@@ -317,14 +317,13 @@
     <script>
         // Адаптация вашей React-логики под Vanilla JS для анимации
         document.addEventListener('DOMContentLoaded', () => {
-            // --- ВАЖНО: ЗАМЕНИТЕ ЭТИ ССЫЛКИ ---
-            // Вместо "https://placehold.co/..." вставьте путь к вашим файлам.
-            // Например, если фото лежат в папке "images", путь будет "images/serik.jpg"
+            // --- ИСПРАВЛЕНИЕ: Используйте относительные пути ---
+            // Путь должен быть от файла index.html до папки images.
             const ministers = [
-                { name: "Серик", title: "Старший пастор", avatarUrl: "/Users/mosesvasilenko/web_site_for_church/images/serik.png" },
-                { name: "Антон", title: "Пастор-учитель", avatarUrl: "/Users/mosesvasilenko/web_site_for_church/images/anton.png" },
-                { name: "Моисей", title: "Лидер подросткового и муз. служений, тренер по флорболу", avatarUrl: "/Users/mosesvasilenko/web_site_for_church/images/moses.png" },
-                { name: "Шерзат", title: "Лидер молодежного служения, администратор д/ц 'Арман'", avatarUrl: "/Users/mosesvasilenko/web_site_for_church/images/sherzat.png" }
+                { name: "Серик", title: "Старший пастор", avatarUrl: "images/serik.png" },
+                { name: "Антон", title: "Пастор-учитель", avatarUrl: "images/anton.png" },
+                { name: "Моисей", title: "Лидер подросткового и муз. служений, тренер по флорболу", avatarUrl: "images/moses.png" },
+                { name: "Шерзат", title: "Лидер молодежного служения, администратор д/ц 'Арман'", avatarUrl: "images/sherzat.png" }
             ];
 
             const container = document.getElementById('team-cards-container');
