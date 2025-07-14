@@ -18,7 +18,4 @@ You can specify another port by passing it as an argument:
 ```
 
 The script will automatically open your default browser if the `open` command is available (default on macOS).
-=======
-# some_AI_tests
-Какие-то тесты от или с помошью AI
 
