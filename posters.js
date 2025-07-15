@@ -401,7 +401,6 @@ class Canvas {
   }
 
   onTouchDown(e) {
-
     e.preventDefault();
     this.isDown = true;
     this.scroll.position = this.scroll.current;
