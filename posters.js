@@ -401,6 +401,8 @@ class Canvas {
   }
 
   onTouchDown(e) {
+
+    e.preventDefault();
     this.isDown = true;
     this.scroll.position = this.scroll.current;
     this.start = e.touches ? e.touches[0].clientY : e.clientY;
@@ -408,6 +410,7 @@ class Canvas {
 
   onTouchMove(e) {
     if (!this.isDown) return;
+    e.preventDefault();
     const y = e.touches ? e.touches[0].clientY : e.clientY;
     const distance = (this.start - y) * 0.1;
     this.scroll.target = this.scroll.position + distance;
@@ -418,6 +421,7 @@ class Canvas {
   }
 
   onWheel(e) {
+    e.preventDefault();
     const speed = e.deltaY;
     this.scroll.target += speed * 0.005;
   }
@@ -439,30 +443,30 @@ class Canvas {
 
   addEventListeners() {
     window.addEventListener("resize", this.onResize);
-    window.addEventListener("wheel", this.onWheel);
-    window.addEventListener("mousewheel", this.onWheel);
+    this.container.addEventListener("wheel", this.onWheel, { passive: false });
+    this.container.addEventListener("mousewheel", this.onWheel, { passive: false });
 
-    window.addEventListener("mousedown", this.onTouchDown);
-    window.addEventListener("mousemove", this.onTouchMove);
-    window.addEventListener("mouseup", this.onTouchUp);
+    this.container.addEventListener("mousedown", this.onTouchDown);
+    this.container.addEventListener("mousemove", this.onTouchMove);
+    this.container.addEventListener("mouseup", this.onTouchUp);
 
-    window.addEventListener("touchstart", this.onTouchDown);
-    window.addEventListener("touchmove", this.onTouchMove);
-    window.addEventListener("touchend", this.onTouchUp);
+    this.container.addEventListener("touchstart", this.onTouchDown, { passive: false });
+    this.container.addEventListener("touchmove", this.onTouchMove, { passive: false });
+    this.container.addEventListener("touchend", this.onTouchUp);
   }
 
   destroy() {
     window.removeEventListener("resize", this.onResize);
-    window.removeEventListener("wheel", this.onWheel);
-    window.removeEventListener("mousewheel", this.onWheel);
+    this.container.removeEventListener("wheel", this.onWheel);
+    this.container.removeEventListener("mousewheel", this.onWheel);
 
-    window.removeEventListener("mousedown", this.onTouchDown);
-    window.removeEventListener("mousemove", this.onTouchMove);
-    window.removeEventListener("mouseup", this.onTouchUp);
+    this.container.removeEventListener("mousedown", this.onTouchDown);
+    this.container.removeEventListener("mousemove", this.onTouchMove);
+    this.container.removeEventListener("mouseup", this.onTouchUp);
 
-    window.removeEventListener("touchstart", this.onTouchDown);
-    window.removeEventListener("touchmove", this.onTouchMove);
-    window.removeEventListener("touchend", this.onTouchUp);
+    this.container.removeEventListener("touchstart", this.onTouchDown);
+    this.container.removeEventListener("touchmove", this.onTouchMove);
+    this.container.removeEventListener("touchend", this.onTouchUp);
   }
 }
 
