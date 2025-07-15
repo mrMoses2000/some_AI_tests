@@ -1,4 +1,3 @@
-
 # Church Website
 
 This project contains a simple static website for the church "Кочевник".
